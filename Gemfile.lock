@@ -112,6 +112,7 @@ GEM
     mini_portile2 (2.8.4)
     minitest (5.19.0)
     msgpack (1.7.2)
+    mysql2 (0.5.5)
     net-imap (0.3.7)
       date
       net-protocol
@@ -196,8 +197,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.3)
-      mini_portile2 (~> 2.8.0)
     tailwindcss-rails (2.0.30)
       railties (>= 6.0.0)
     thor (1.2.2)
@@ -239,13 +238,13 @@ DEPENDENCIES
   importmap-rails (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  mysql2 (>= 0.4.4)
   puma (~> 4.1)
   rails (~> 6.0.6, >= 6.0.6.1)
   sass-rails (>= 6)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
   tailwindcss-rails (~> 2.0)
   turbo-rails (~> 0.9.1)
   tzinfo-data
