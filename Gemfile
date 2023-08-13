@@ -19,7 +19,9 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
+
+gem "importmap-rails", "~> 1.2"
 
 gem 'turbo-rails', '~> 0.9.1'
 
@@ -51,7 +53,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "importmap-rails", "~> 1.2"
 gem "devise", "~> 4.9"
-
-gem "tailwindcss-rails", "~> 2.0"
+gem "bootstrap", "~> 5.3.0.alpha3"
+gem "ruby-vips", "~> 2.1", ">= 2.1.4"
+gem "streamio-ffmpeg", "~> 3.0", ">= 3.0.2"
+gem "poppler", "~> 4.1", ">= 4.1.8"

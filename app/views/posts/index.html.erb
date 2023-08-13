@@ -1,1 +1,4 @@
 <h1>Hello, Rails!</h1>
+<%= link_to "New Post", new_user_post_path(@user) %>
+
+<%= render @user.posts %>
