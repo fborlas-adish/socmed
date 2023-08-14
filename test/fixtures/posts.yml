@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  has_media: false
+  upload_path: MyString
+  user: one
+
+two:
+  body: MyText
+  has_media: false
+  upload_path: MyString
+  user: two

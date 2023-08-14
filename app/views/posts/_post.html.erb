@@ -1,0 +1,10 @@
+<p>
+    <strong>Body:</strong>
+
+    <%= link_to post.body, [post.user, post] %>
+    <% if post.media.attached? %>
+        <% post.media.each do |media| %>
+            <img src="<%= (url_for(media))%>">
+        <% end%>
+    <% end %>
+</p>
