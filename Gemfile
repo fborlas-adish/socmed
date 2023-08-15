@@ -55,6 +55,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise", "~> 4.9"
 gem "bootstrap", "~> 5.3.0.alpha3"
+gem "jquery-rails"
+gem "jquery-ui-rails"
 gem "ruby-vips", "~> 2.1", ">= 2.1.4"
 gem "streamio-ffmpeg", "~> 3.0", ">= 3.0.2"
 gem "poppler", "~> 4.1", ">= 4.1.8"

@@ -1,4 +1,5 @@
-<h1>Hello, Rails!</h1>
-<%= link_to "New Post", new_user_post_path(@user) %>
+<div class="d-flex flex-column">
+    <%= link_to "New Post", new_user_post_path(@user), class: "btn btn-outline-primary col my-3" %>
 
-<%= render @user.posts %>
+    <%= render @user.posts %>
+</div>
