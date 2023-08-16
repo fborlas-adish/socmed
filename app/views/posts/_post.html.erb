@@ -4,7 +4,7 @@
         <%= post.user.full_name %>
     </div>
     <div>
-        <%= link_to "X", user_post_path(post.user, post), data: {
+        <%= link_to "", user_post_path(post.user, post), class: "btn-close", data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %>
@@ -15,8 +15,8 @@
     <% if post.media.attached? %>
         <div class="flex-wrap">
             <% post.media.each do |media| %>
-                <div class="flex-shrink-0">
-                    <img src="<%= (url_for(media))%>" class="card-img-bottom">
+                <div class="flex-shrink-0 mb-1">
+                    <img src="<%= (url_for(media))%>" class="p-3 img-fluid img-thumbnail rounded">
                 </div>
             <% end%>
         </div>
