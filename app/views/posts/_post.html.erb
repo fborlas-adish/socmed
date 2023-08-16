@@ -1,6 +1,9 @@
 <div class="card mb-3">
   <div class="d-flex card-header justify-content-between">
-    <div>
+    <div class="d-flex justify-content-start align-items-center">
+        <% if post.user.avatar.attached? %>
+            <%= image_tag post.user.avatar.variant(resize: "20x20"), class: "rounded-circle me-2"%>
+        <% end %>
         <%= post.user.full_name %>
     </div>
     <div>
@@ -13,11 +16,17 @@
   <div class="d-flex flex-column card-body">
     <p class="card-text"><%= post.body %></p>
     <% if post.media.attached? %>
-        <div class="flex-wrap">
-            <% post.media.each do |media| %>
-                <div class="flex-shrink-0 mb-1">
-                    <img src="<%= (url_for(media))%>" class="p-3 img-fluid img-thumbnail rounded">
-                </div>
+        <div class="d-flex flex-wrap flex-row">
+            <% post.media.each_with_index do |media, index| %>
+                    <p class="flex-shrink-0 img-thumbnail rounded position-relative m-1 ms-0">
+                        <button type="button" class="btn btn-secondary position-absolute top-50 start-50 translate-middle" style="opacity: 0.6;" data-bs-toggle="modal" data-bs-target="#exampleModal-<%= index %>">
+                            View
+                        </button>
+
+                        <%= image_tag media.variant(resize: "200x200")%>
+                    </p>
+
+                <%= render "image_modal", media: media, index: index %>
             <% end%>
         </div>
     <% end %>
