@@ -2,8 +2,4 @@
 
 <ul>
   <li><%= link_to "Edit", edit_user_post_path(@post.user, @post) %></li>
-  <li><%= link_to "Destroy", user_post_path(@post.user, @post), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
 </ul>
