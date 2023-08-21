@@ -1,5 +1,13 @@
 <p><%= @post.body %></p>
 
+<% if @post.media.attached? %>
+  <div class="d-flex flex-wrap flex-row">
+      <% @post.media.each_with_index do |media, index| %>
+        <%= image_tag media %>
+      <% end%>
+  </div>
+<% end %>
+
 <ul>
   <li><%= link_to "Edit", edit_user_post_path(@post.user, @post) %></li>
 </ul>

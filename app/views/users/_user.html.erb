@@ -1,0 +1,28 @@
+<div class="card mb-3">
+    <div class="d-flex flex-column card-body">
+        <div class="d-flex justify-content-start align-items-center mb-3">
+            <% if user.avatar.attached? %>
+                <%= image_tag user.avatar.variant(resize: "50x50"), class: "rounded-circle me-2"%>
+            <% end %>
+            <%= user.full_name %>
+        </div>
+
+        <%= form_with model: @friendship, data: { turbo_confirm: "Add " + user.full_name + " as friend?" } do |form| %>
+            <p>
+                <%= form.hidden_field :user, value: current_user.id %>
+            </p>
+
+            <p>
+                <%= form.hidden_field :friend, value: user.id %>
+            </p>
+
+            <p>
+                <%= form.hidden_field :friendship_status, value: "pending" %>
+            </p>
+
+            <p>
+                <%= form.submit "Add friend", class: "btn btn-outline-primary" %>
+            </p>
+        <% end %>
+    </div>
+</div>    
