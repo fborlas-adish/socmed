@@ -1,12 +1,14 @@
 <%= form_with model: user_post do |form| %>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
+  <div class="mb-3">
+    <%= form.label :body, class: "form-label" %><br>
+    <%= form.text_area :body, class: "form-control" %>
+  </div>
 
-  <%= form.file_field :media, multiple: true %> 
+  <div class="mb-3">
+    <%= form.file_field :media, multiple: true %> 
+  </div>
 
-  <p>
-    <%= form.submit %>
-  </p>
+  <div>
+    <%= form.submit "Submit", class: "btn btn-outline-primary" %>
+  </div>
 <% end %>
