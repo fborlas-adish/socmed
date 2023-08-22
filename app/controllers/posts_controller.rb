@@ -32,11 +32,10 @@ class PostsController < ApplicationController
 
         @post = @user.posts.create(post_params)
 
-        puts @post.inspect
-
         if @post["id"]
             redirect_to user_posts_path(@user)
         else
+            flash.now[:alert] = "Unable to create Post"
             render :new, status: :unprocessable_entity
         end
     end

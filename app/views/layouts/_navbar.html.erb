@@ -10,7 +10,10 @@
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <%= link_to "Friends", user_friendships_path(current_user, filter: :accepted), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "People on Socmed", users_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -1,0 +1,72 @@
+<ul class="nav nav-tabs my-3">
+  <li class="nav-item">
+    <%= link_to "Friends list", user_friendships_path(current_user, filter: :accepted), class: @filter == "accepted" ? "nav-link active" : "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Requests sent", user_friendships_path(current_user, filter: :pending), class: @filter == "pending" ? "nav-link active" : "nav-link" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Friend requests", user_friendships_path(current_user, filter: :requests), class: @filter == "requests" ? "nav-link active" : "nav-link" %>
+  </li>
+</ul>
+
+<% if @filter == "accepted" %>
+  <% @friendships.each do | friendship | %>
+    <% if friendship.user == current_user %>
+      <div class="card mb-3 mx-3">
+        <div class="d-flex flex-column card-body">
+            <div class="d-flex justify-content-start align-items-center">
+                <% if friendship.friend.avatar.attached? %>
+                    <%= image_tag friendship.friend.avatar.variant(resize: "50x50"), class: "rounded-circle me-2" %>
+                <% end %>
+                <%= friendship.friend.full_name %>
+              </div>
+          </div>
+      </div>    
+    <% else %>
+      <div class="card mb-3 mx-3">
+        <div class="d-flex flex-column card-body">
+            <div class="d-flex justify-content-start align-items-center">
+                <% if friendship.user.avatar.attached? %>
+                    <%= image_tag friendship.user.avatar.variant(resize: "50x50"), class: "rounded-circle me-2" %>
+                <% end %>
+                <%= friendship.user.full_name %>
+              </div>
+          </div>
+      </div> 
+    <% end %>
+  <% end %>
+<% else %>
+  <% @friendships.each do | friendship | %>
+    <div class="card mb-3 mx-3">
+      <div class="d-flex flex-row card-body">
+        <div class="d-flex justify-content-start align-items-center" style="flex: 1;">
+            <% if @filter == "pending" %>
+              <% if friendship.friend.avatar.attached? %>
+                <%= image_tag friendship.friend.avatar.variant(resize: "50x50"), class: "rounded-circle me-2" %>
+              <% end %>
+              <%= friendship.friend.full_name %>
+            <% else %>
+              <% if friendship.user.avatar.attached? %>
+                <%= image_tag friendship.user.avatar.variant(resize: "50x50"), class: "rounded-circle me-2" %>
+              <% end %>
+              <%= friendship.user.full_name %>
+            <% end %>
+        </div>
+        <% if @filter == "requests" %>
+          <div class="d-flex justify-content-end align-items-center" style="flex: 1;">
+              <%= link_to "Accept", user_friendship_path(friendship.friend, friendship.user, accept: true), class: "btn btn-dark me-1", data: {
+                          turbo_method: :put,
+                          turbo_confirm: "Accept friend request?"
+                        } %>
+
+              <%= link_to "Decline", user_friendship_path(friendship.friend, friendship.user, accept: false), class: "btn btn-outline-dark", data: {
+                          turbo_method: :put,
+                          turbo_confirm: "Decline friend request?"
+                        } %>
+          </div>
+        <% end %>
+      </div>
+    </div>    
+  <% end %>
+<% end %>
