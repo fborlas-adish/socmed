@@ -1,3 +1,5 @@
-<h2>New Post:</h2>
+<div class="d-flex flex-column p-5" style="flex: 1;">
+    <h2>Create Post</h2>
 
-<%= render 'form', user_post: [@user, @user.posts.build] %>
+    <%= render 'form', user_post: [@user, @user.posts.build] %>
+</div>

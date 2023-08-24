@@ -32,12 +32,12 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
+  config.action_mailer.default_url_options = { host: "localhost:3000" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    user_name:      ENV['SENDMAIL_USERNAME'],
-    password:       ENV['SENDMAIL_PASSWORD'],
-    domain:         ENV['MAIL_HOST'],
+    user_name:      "booking.system030121@gmail.com",
+    password:       "rgkdynxbixvamade",
+    domain:         "localhost:3000",
     address:       'smtp.gmail.com',
     port:          '587',
     authentication: :plain,

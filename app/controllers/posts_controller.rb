@@ -20,9 +20,15 @@ class PostsController < ApplicationController
     def update
         @post = Post.find(params[:id])
 
+        unless @post.can_update?(@post.user)
+            flash.now[:alert] = "Unable to update Post"
+            return render :edit, status: :unprocessable_entity
+        end
+
         if @post.update(post_params)
             redirect_to user_post_path(@post.user, @post)
         else
+            flash.now[:alert] = "Unable to update Post"
             render :edit, status: :unprocessable_entity
         end
     end
@@ -32,11 +38,10 @@ class PostsController < ApplicationController
 
         @post = @user.posts.create(post_params)
 
-        puts @post.inspect
-
         if @post["id"]
             redirect_to user_posts_path(@user)
         else
+            flash.now[:alert] = "Unable to create Post"
             render :new, status: :unprocessable_entity
         end
     end
@@ -44,6 +49,12 @@ class PostsController < ApplicationController
     def destroy
         @user = current_user
         @post = @user.posts.find(params[:id])
+
+        unless @post.can_update?(@user)
+            flash.now[:alert] = "Unable to delete Post"
+            return render :index, status: :unprocessable_entity
+        end
+
         @post.destroy
         redirect_to user_posts_path(@user), status: :see_other
     end

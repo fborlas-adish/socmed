@@ -1,5 +1,28 @@
-<p><%= @post.body %></p>
+<div class="d-flex flex-column p-5">
 
-<ul>
-  <li><%= link_to "Edit", edit_user_post_path(@post.user, @post) %></li>
-</ul>
+  <div class="d-flex card-header justify-content-between mb-3">
+    <div class="d-flex justify-content-start align-items-center">
+        <% if @post.user.avatar.attached? %>
+            <%= image_tag @post.user.avatar.variant(resize: "50x50"), class: "rounded-circle me-2"%>
+        <% end %>
+        <h3><%= @post.user.full_name %></h3>
+    </div>
+    <div>
+        <%= link_to "Edit", edit_user_post_path(@post.user, @post), class: "btn btn-outline-dark me-1" %>
+
+        <%= link_to "Delete", user_post_path(@post.user, @post), class: "btn btn-dark", data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+    </div>
+  </div>
+  <p class="bg-secondary w-100" style="height: 1px;"></p>
+
+  <p><%= @post.body %></p>
+
+  <% if @post.media.attached? %>
+    <% @post.media.each_with_index do |media, index| %>
+        <%= image_tag media, class: "d-block w-100" %>
+    <% end%>
+  <% end %>
+</div>
