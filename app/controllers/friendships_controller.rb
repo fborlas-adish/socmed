@@ -55,8 +55,14 @@ class FriendshipsController < ApplicationController
         end
 
         def friends?
-            friendship = Friendship.where('user_id = ? OR friend_id = ?', params[:friendship][:user], params[:friendship][:user])
+            friendships = Friendship.where('user_id = ? OR friend_id = ?', params[:friendship][:user], params[:friendship][:user])
 
-            friendship.size > 0
+            friendships.each do | friendship |
+                if friendship.friend_id == params[:friendship][:friend].to_i || friendship.user_id == params[:friendship][:friend].to_i
+                    return true
+                end
+            end
+
+            return false
         end
 end
